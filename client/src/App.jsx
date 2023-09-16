@@ -1,17 +1,13 @@
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
 
-import './App.css';
+import './index.css';
 import { Toaster } from 'react-hot-toast';
+import Footer from './components/Footer';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <div>
-        <h1>Hello World</h1>
-        <Link to="about">About Us</Link>
-      </div>
-    ),
+    element: <Footer />,
   },
   {
     path: 'about',
