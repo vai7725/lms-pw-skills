@@ -1,9 +1,9 @@
-import { BsFacebook, BsInstagram, BsLinkedin } from 'react-icons/bs';
+import { BsFacebook, BsInstagram, BsLinkedin } from 'react-icons/bs'
 
 export default function Footer() {
-  const date = new Date();
+  const date = new Date()
 
-  const year = date.getFullYear();
+  const year = date.getFullYear()
   return (
     <>
       <footer className="relative left-0 bottom-0 h-[10vh] py-5 flex flex-col sm:flex-row items-center justify-between sm:px-20 text-white bg-gray-800">
@@ -23,5 +23,5 @@ export default function Footer() {
         </section>
       </footer>
     </>
-  );
+  )
 }
