@@ -2,9 +2,8 @@ import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom'
 
 import './index.css'
 import { Toaster } from 'react-hot-toast'
-import Footer from './components/Footer'
-import HomeLayout from './layouts/HomeLayout'
 import Home from './pages/Home'
+import About from './pages/About'
 
 const router = createBrowserRouter([
   {
@@ -12,8 +11,8 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: 'about',
-    element: <div>About</div>,
+    path: '/about',
+    element: <About />,
   },
 ])
 

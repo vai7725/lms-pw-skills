@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Footer from '../components/Footer'
 import { FiMenu } from 'react-icons/fi'
 import { AiFillCloseCircle } from 'react-icons/ai'
@@ -47,30 +47,32 @@ export default function HomeLayout({ children }) {
 
         <div className="drawer-side w-0">
           <label htmlFor="my-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-80 flex flex-col justify-between min-h-screen bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            <li className="w-fit absolute right-2 z-50">
-              <button onClick={hideDrawer}>
-                <AiFillCloseCircle />
-              </button>
-            </li>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            {isLoggedIn && role === 'ADMIN' && (
-              <li>
-                <Link to="/">Admin Dashboard</Link>
+            <div>
+              <li className="w-fit absolute right-2 z-50">
+                <button onClick={hideDrawer}>
+                  <AiFillCloseCircle />
+                </button>
               </li>
-            )}
-            <li>
-              <Link to="/about">About us</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact us</Link>
-            </li>
-            <li>
-              <Link to="/courses">All courses</Link>
-            </li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              {isLoggedIn && role === 'ADMIN' && (
+                <li>
+                  <Link to="/">Admin Dashboard</Link>
+                </li>
+              )}
+              <li>
+                <Link to="/about">About us</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact us</Link>
+              </li>
+              <li>
+                <Link to="/courses">All courses</Link>
+              </li>
+            </div>
             <li className="flex flex-row items-center justify-around bg-gray-800 py-2 rounded-md">
               {!isLoggedIn ? (
                 <>
