@@ -2,9 +2,15 @@ import React from 'react'
 import Footer from '../components/Footer'
 import { FiMenu } from 'react-icons/fi'
 import { AiFillCloseCircle } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function HomeLayout({ children }) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { isLoggedIn, role } = useSelector((state) => state.auth)
+
   const changeWidth = () => {
     const drawerSide = document.getElementsByClassName('drawer-side')
     drawerSide[0].style.width = 'auto'
@@ -15,6 +21,14 @@ export default function HomeLayout({ children }) {
     el[0].checked = false
     const drawerSide = document.getElementsByClassName('drawer-side')
     drawerSide[0].style.width = '0'
+  }
+
+  const handleLogout = (e) => {
+    // todo
+    e.preventDefault()
+
+    // todo
+    navigate('/')
   }
 
   return (
@@ -43,6 +57,11 @@ export default function HomeLayout({ children }) {
             <li>
               <Link to="/">Home</Link>
             </li>
+            {isLoggedIn && role === 'ADMIN' && (
+              <li>
+                <Link to="/">Admin Dashboard</Link>
+              </li>
+            )}
             <li>
               <Link to="/about">About us</Link>
             </li>
@@ -51,6 +70,39 @@ export default function HomeLayout({ children }) {
             </li>
             <li>
               <Link to="/courses">All courses</Link>
+            </li>
+            <li className="flex flex-row items-center justify-around bg-gray-800 py-2 rounded-md">
+              {!isLoggedIn ? (
+                <>
+                  <Link
+                    to="/login"
+                    className="bg-indigo-800 rounded-md font-semibold hover:bg-indigo-500 text-white hover:text-gray-800"
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="bg-yellow-700 rounded-md font-semibold hover:bg-yellow-500 hover:text-gray-800 text-white"
+                  >
+                    Sign up
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/user/profile"
+                    className="bg-indigo-800 rounded-md font-semibold hover:bg-indigo-500 text-white hover:text-gray-800"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="bg-yellow-700 rounded-md font-semibold hover:bg-yellow-500 hover:text-gray-800 text-white"
+                  >
+                    Log out
+                  </button>
+                </>
+              )}
             </li>
           </ul>
         </div>
